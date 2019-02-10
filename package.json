@@ -1,0 +1,15 @@
+{
+  "name": "craigecodes",
+  "version": "1.0.0",
+  "description": "portfolio site",
+  "main": "index.js",
+  "dependencies": {
+    "node-sass": "^4.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "sass": "node-sass -w sass/ -o dist/css/ --recursive"
+  },
+  "author": "Craige Hart",
+  "license": "MIT"
+}

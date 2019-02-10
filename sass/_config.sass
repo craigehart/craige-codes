@@ -1,0 +1,73 @@
+// ********** Color Values *********
+$fb: #3b5999
+$twitter: #55acee
+$insta: #e4405f
+$github: #6e5494
+
+$pink: #ff497c
+//  ********* Glodal and reset styles *********
+
+html
+  *
+    box-sizing: border-box
+    padding: 0
+    margin: 0
+
+body
+  overflow-x: hidden
+  width: 100%
+  padding: 0
+  margin: 0
+  font-size: 16px
+  color: #fff
+  font-family: 'Poppins', sans-serif
+  line-height: 1.2
+  *,
+  &:before,
+  &:after
+    box-sizing: border-box
+
+h1, h2, h3, h4, h5, h6
+  padding: 0
+  margin: 0
+
+ul
+  list-style: none
+
+a
+  text-decoration: none
+  color: #000
+
+  &:hover
+    text-decoration: none
+
+//  ************* Mixins *************
+
+@mixin easeOut
+  transition: all 0.5 ease-out
+
+// menu button mixin
+@mixin easeIn
+  transition: transform 0.5s ease-in
+
+//  ******* Media Mixins ***********
+
+@mixin mediaSm
+  @media screen and (max-width: 500px)
+    @content
+
+@mixin mediaMd
+  @media screen and (max-width: 768px)
+    @content
+
+@mixin mediaLg
+  @media screen and (min-width: 769px) and (max-width: 1170px)
+    @content
+
+@mixin mediaXl
+  @media screen and (max-width: 970px)
+    @content
+
+@mixin mediaXXl
+  @media screen and (min-width: 1171px)
+    @content
