@@ -65,60 +65,71 @@ $(document).ready(function() {
 
 
 
+const home = barba.baseView.extend({
+  namespace: 'home',
+  onEnter() {},
+  onLeave() {},
+  onEnterCompleted() {},
+  onLeaveCompleted() {},
 
+});
 
+const Barba = require('barba.js')
+const home = require('views/home')
+
+home.init();
 Barba.Pjax.start();
 
 
-  var TransitionAnimation = Barba.BaseTransition.extend({
-    start: function() {
-      /**
-       * This function is automatically called as soon the Transition starts
-       * this.newContainerLoading is a Promise for the loading of the new container
-       * (Barba.js also comes with an handy Promise polyfill!)
-       */
+var TransitionAnimation = Barba.BaseTransition.extend({
+  start: function() {
+    /**
+     * This function is automatically called as soon the Transition starts
+     * this.newContainerLoading is a Promise for the loading of the new container
+     * (Barba.js also comes with an handy Promise polyfill!)
+     */
 
-      // As soon the loading is finished and the old page is faded out, let's fade the new page
-      Promise
-        .all([this.newContainerLoading, this.startTransition()])
-        .then(this.fadeIn.bind(this));
-    },
+    // As soon the loading is finished and the old page is faded out, let's fade the new page
+    Promise
+      .all([this.newContainerLoading, this.startTransition()])
+      .then(this.fadeIn.bind(this));
+  },
 
-    startTransition: function() {
-      var transitionPromise = new Promise(function(resolve) {
-      var wipe = $(".color-wipe");
-      var outTransition = new TimelineMax();
+  startTransition: function() {
+    var transitionPromise = new Promise(function(resolve) {
+    var wipe = $(".color-wipe");
+    var outTransition = new TimelineMax();
 
-      outTransition
-      .set(wipe, {display: "block", y: "100%"}, "-=0.7")
-      .staggerFromTo(wipe, 1, {y: "100%"}, {y:"-100%", ease:Expo.easeOut}, 0.2, "-=0.7")
+    outTransition
+    .set(wipe, {display: "block", y: "100%"}, "-=0.7")
+    .staggerFromTo(wipe, 1, {y: "100%"}, {y:"-100%", ease:Expo.easeOut}, 0.2, "-=0.7")
 
-      .to(".loader", 1, {autoAlpha: 1, onComplete: function(){resolve();
-      }})
+    .to(".loader", 1, {autoAlpha: 1, onComplete: function(){resolve();
+    }})
 
-      .staggerFromTo(wipe, 1, {y: "-100%"}, {y:"-200%", ease:Expo.easeOut}, 0.2)
-      .set(wipe, {display: "none"})
+    .staggerFromTo(wipe, 1, {y: "-100%"}, {y:"-200%", ease:Expo.easeOut}, 0.2)
+    .set(wipe, {display: "none"})
 
-    });
-
-    return transitionPromise;
-
-    },
-
-    fadeIn: function() {
-
-
-
-      var _this = this;
-      var $el = $(this.newContainer);
-
-      TweenMax.set($(this.oldcontainer), {display: "none"});
-      TweenMax.fromTo(".loader", .7, {autoAlpha: 1,}, {autoAlpha: 0,})
-      TweenMax.to($el, 0.1, {opacity: 1, onComplete: function(){_this.done();
-
-      }});
-    }
   });
+
+  return transitionPromise;
+
+  },
+
+  fadeIn: function() {
+
+
+
+    var _this = this;
+    var $el = $(this.newContainer);
+
+    TweenMax.set($(this.oldcontainer), {display: "none"});
+    TweenMax.fromTo(".loader", .7, {autoAlpha: 1,}, {autoAlpha: 0,})
+    TweenMax.to($el, 0.1, {opacity: 1, onComplete: function(){_this.done();
+
+    }});
+  }
+});
 
   /**
    * Next step, you have to tell Barba to use the new Transition
