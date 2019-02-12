@@ -64,11 +64,25 @@ $(document).ready(function() {
 
   // ************* About Page animations **************
   function aboutAnimation () {
-    var sub = $('.sub-heading')
+    var sub = $('.sub-heading');
+    var head = $('main>h1');
+    var img = $('img');
+    var bioTxt = $('.bioHead');
+    var bio = $('.bioP')
+    
+
     var tl2 = new TimelineMax();
 
     tl2
-      .from(sub, 3, {autoAlpha: 0,})
+      .delay(2)
+      .from(head, 1, {autoAlpha: 0, x:100})
+      .from(sub, 2, {autoAlpha: 0,})
+      .from(img, 1, {autoAlpha: 0, x:-100})
+      .from(bioTxt, 1, {autoAlpha: 0, y:-100}, "=-1")
+      .from(bio, 1, {autoAlpha: 0, scale: 0})
+      .from('.skill-1', 1, {autoAlpha: 0, x:-100})
+      .from('.skill-3', 1, {autoAlpha: 0, x:100}, '=-1')
+      .from('.skill-2', 1, {autoAlpha: 0, y:100})
   };
 
 
