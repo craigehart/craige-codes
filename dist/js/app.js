@@ -51,41 +51,62 @@ $(document).ready(function() {
 
   tl1
     // .from(bg, 2, {autoAlpha: 0, scale:1})
-    .from(nav, 3, {autoAlpha: 0,})
-    .from(center, 1, {autoAlpha: 0, ease:Power2.easeOut, x:"-70%"})
+    .from(nav, 2, {autoAlpha: 0,})
+    .from(center, 0.5, {autoAlpha: 0, ease:Power2.easeOut, x:"-70%"})
     .from(code, 0.5, {autoAlpha: 0, x:55, ease:Power3.easeOut,})
     .from(design, 0.5, {autoAlpha: 0, x: -55, ease:Power3.easeOut})
-    .from(line, 0.5, {autoAlpha: 0, ease: Circ.easeOut})
+    .from(line, 0.7, {autoAlpha: 0, ease: Circ.easeOut})
     .from(one, 0.5, {autoAlpha: 0, ease:Bounce.easeIn})
     .from(two, 0.5, {autoAlpha: 0, ease:Bounce.easeIn})
     .from(three, 0.5, {autoAlpha: 0, ease:Bounce.easeIn})
     .from(four, 0.5, {autoAlpha: 0, ease:Bounce.easeIn})
     .from(foot, 0.5, {autoAlpha: 0, y: -100})
 
-var sub = $('.sub-heading')
+  // ************* About Page animations **************
+  function aboutAnimation () {
+    var sub = $('.sub-heading')
+    var tl2 = new TimelineMax();
 
-var tl2 = new TimelineMax();
+    tl2
+      .from(sub, 3, {autoAlpha: 0,})
+  };
 
-tls
-  .from(sub, 2, {autoAlpha: 0,})
 
-
-var home = barba.baseView.extend({
+var home = Barba.BaseView.extend({
   namespace: 'home',
-  onEnter: function() {},
-  onEnterCompleted: function() {
-    console.log("completed")
+  onEnter: function() {
+    console.log('home:enter');
   },
-  onLeave: function() {},
-  onLeaveCompleted: function() {},
+  onEnterCompleted: function() {
+    
+  },
+  onLeave: function() {
+    console.log('home:leave');
+  },
+  onLeaveCompleted: function() {
 
+  },
 });
 
-const Barba = require('barba.js')
-// const home = require('views/home')
+const about = Barba.BaseView.extend({
+  namespace: 'about',
+  onEnter: function() {
+    console.log('about:enter');
+    
+  },
+  onEnterCompleted: function() {
+    aboutAnimation();
+  },
+  onLeave: function() {
+    console.log('about:leave');
+  },
+  onLeaveCompleted: function() {
+    
+  },
+});
 
 home.init();
-
+about.init();
 Barba.Pjax.start();
 
 var TransitionAnimation = Barba.BaseTransition.extend({
