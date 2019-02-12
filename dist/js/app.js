@@ -62,27 +62,35 @@ $(document).ready(function() {
     .from(four, 0.5, {autoAlpha: 0, ease:Bounce.easeIn})
     .from(foot, 0.5, {autoAlpha: 0, y: -100})
 
+var sub = $('.sub-heading')
+
+var tl2 = new TimelineMax();
+
+tls
+  .from(sub, 2, {autoAlpha: 0,})
 
 
-
-const home = barba.baseView.extend({
+var home = barba.baseView.extend({
   namespace: 'home',
-  onEnter() {},
-  onLeave() {},
-  onEnterCompleted() {},
-  onLeaveCompleted() {},
+  onEnter: function() {},
+  onEnterCompleted: function() {
+    console.log("completed")
+  },
+  onLeave: function() {},
+  onLeaveCompleted: function() {},
 
 });
 
 const Barba = require('barba.js')
-const home = require('views/home')
+// const home = require('views/home')
 
 home.init();
-Barba.Pjax.start();
 
+Barba.Pjax.start();
 
 var TransitionAnimation = Barba.BaseTransition.extend({
   start: function() {
+
     /**
      * This function is automatically called as soon the Transition starts
      * this.newContainerLoading is a Promise for the loading of the new container
@@ -147,6 +155,8 @@ var TransitionAnimation = Barba.BaseTransition.extend({
   };
 
 });
+
+
 
 
 

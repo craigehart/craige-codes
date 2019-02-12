@@ -28,6 +28,9 @@ a {
   a:hover {
     text-decoration: none; }
 
+nav.about {
+  background-color: #0a0d0c; }
+
 .bg1 {
   background-color: #000;
   height: 100%;
