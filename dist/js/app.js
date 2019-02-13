@@ -31,7 +31,9 @@ $(document).ready(function() {
 
   // ********* PAGE TIME LINES *************
 
-  // *********** HOME PAGE *************
+  // *********** HOME PAGE ANIMATION *************
+
+  
   var nav = $('nav');
   var icon = $('.social-item');
   var center = $('.center');
@@ -61,7 +63,7 @@ $(document).ready(function() {
     .from(three, 0.5, {autoAlpha: 0, ease:Bounce.easeIn})
     .from(four, 0.5, {autoAlpha: 0, ease:Bounce.easeIn})
     .from(foot, 0.5, {autoAlpha: 0, y: -100})
-
+  
   // ************* About Page animations **************
   function aboutAnimation () {
     var sub = $('.sub-heading');
@@ -119,8 +121,26 @@ const about = Barba.BaseView.extend({
   },
 });
 
+const work = Barba.BaseView.extend({
+  namespace: 'work',
+  onEnter: function() {
+    console.log('work:enter');
+    
+  },
+  onEnterCompleted: function() {
+    aboutAnimation();
+  },
+  onLeave: function() {
+    console.log('work:leave');
+  },
+  onLeaveCompleted: function() {
+    
+  },
+});
+
 home.init();
 about.init();
+work.init();
 Barba.Pjax.start();
 
 var TransitionAnimation = Barba.BaseTransition.extend({
